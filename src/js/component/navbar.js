@@ -5,12 +5,33 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
 			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+				<img src="http://1000marcas.net/wp-content/uploads/2019/12/Star-Wars-Logo-5.png" height={100} />
 			</Link>
 			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
+				<div className="dropdown">
+					<a
+						className="btn btn-secondary dropdown-toggle"
+						href="#"
+						role="button"
+						id="dropdownMenuLink"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false">
+						Dropdown link
+					</a>
+
+					<div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<a className="dropdown-item" href="#">
+							Action
+						</a>
+						<a className="dropdown-item" href="#">
+							Another action
+						</a>
+						<a className="dropdown-item" href="#">
+							Something else here
+						</a>
+					</div>
+				</div>
 			</div>
 		</nav>
 	);
