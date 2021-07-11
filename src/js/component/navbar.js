@@ -10,7 +10,7 @@ export const Navbar = () => {
 			<div className="ml-auto">
 				<div className="dropdown">
 					<a
-						className="btn btn-secondary dropdown-toggle"
+						className="btn btn-primary dropdown-toggle"
 						href="#"
 						role="button"
 						id="dropdownMenuLink"
@@ -19,11 +19,10 @@ export const Navbar = () => {
 						aria-expanded="false">
 						Dropdown link
 					</a>
-
-					<div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-						<a className="dropdown-item" href="#">
+					<div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+						<Link to="/demo" className="dropdown-item" style={{ textDecoration: "none" }}>
 							Action
-						</a>
+						</Link>
 						<a className="dropdown-item" href="#">
 							Another action
 						</a>

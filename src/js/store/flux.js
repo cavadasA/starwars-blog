@@ -1,18 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			characters: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,6 +26,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			getCharacters: () => {
+				const store = getStore();
+				return store.characters;
+			},
+			setCharacters: array => {
+				setStore({ characters: array });
 			}
 		}
 	};
