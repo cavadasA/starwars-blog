@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			characters: [],
-			charactersProps: {}
+			planets: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -35,17 +35,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCharacters: array => {
 				setStore({ characters: array });
 			},
-			setCharactersProps: object => {
-				setStore({
-					charactersProps: {
-						...charactersProps,
-						object
-					}
-				});
-			},
-			getCharactersProps: () => {
+			getPlanets: () => {
 				const store = getStore();
-				return store.charactersProps;
+				return store.planets;
+			},
+			setPlanets: array => {
+				setStore({ planets: array });
 			}
 		}
 	};
