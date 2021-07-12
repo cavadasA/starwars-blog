@@ -8,20 +8,29 @@ export const Home = () => {
 	const { actions } = useContext(Context);
 	const [characters, setCharacters] = useState(actions.getCharacters());
 	const [planets, setPlanets] = useState(actions.getPlanets());
+	const [loadingData, setLoading] = useState(false);
+
+	const fetchData = () => {
+		setLoading(true);
+		fetch("https://www.swapi.tech/api/people")
+			.then(response => response.json())
+			.then(data => {
+				actions.setCharacters(data.results);
+				setLoading(false);
+				setCharacters(actions.getCharacters());
+			});
+		setLoading(true);
+		fetch("https://www.swapi.tech/api/planets")
+			.then(response => response.json())
+			.then(data => {
+				actions.setPlanets(data.results);
+				setLoading(false);
+				setPlanets(actions.getPlanets());
+			});
+	};
 
 	useEffect(() => {
-		if (characters.length === 0) {
-			fetch("https://www.swapi.tech/api/people")
-				.then(response => response.json())
-				.then(data => actions.setCharacters(data.results))
-				.then(() => setCharacters(actions.getCharacters()));
-		}
-		if (planets.length === 0) {
-			fetch("https://www.swapi.tech/api/planets")
-				.then(response => response.json())
-				.then(data => actions.setPlanets(data.results))
-				.then(() => setPlanets(actions.getPlanets()));
-		}
+		fetchData();
 	}, []);
 
 	return (

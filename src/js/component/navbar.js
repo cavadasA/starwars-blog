@@ -17,7 +17,7 @@ export const Navbar = () => {
 						data-toggle="dropdown"
 						aria-haspopup="true"
 						aria-expanded="false">
-						Dropdown link
+						Favorites
 					</a>
 					<div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 						<Link to="/demo" className="dropdown-item" style={{ textDecoration: "none" }}>
