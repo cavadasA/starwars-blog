@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { FaRegHeart } from "react-icons/fa";
+import { Context } from "../store/appContext";
 
 export const Card = props => {
+	const { actions } = useContext(Context);
 	const [properties, setProperties] = useState();
 
 	useEffect(() => {
@@ -10,6 +13,10 @@ export const Card = props => {
 			.then(response => response.json())
 			.then(data => setProperties(data));
 	}, []);
+
+	function favoriteHandler(name) {
+		actions.setFavorites(name);
+	}
 
 	if (props.type === "character") {
 		return (
@@ -26,18 +33,30 @@ export const Card = props => {
 					<p className="card-text">
 						Eye Color: {properties === undefined ? "Loading..." : properties.result.properties.eye_color}
 					</p>
-					<Link
-						to={
-							properties === undefined
-								? "/"
-								: {
-										pathname: "/character/" + properties.result.uid,
-										state: properties
-								  }
-						}
-						className="btn btn-outline-primary">
-						Learn More!
-					</Link>
+					<div className="row">
+						<div className="col-6">
+							<Link
+								to={
+									properties === undefined
+										? "/"
+										: {
+												pathname: "/character/" + properties.result.uid,
+												state: properties
+										  }
+								}
+								className="btn btn-outline-primary">
+								Learn More!
+							</Link>
+						</div>
+						<div className="col-6">
+							<button
+								type="button"
+								className="btn btn-outline-warning"
+								onClick={() => favoriteHandler(props.name)}>
+								<FaRegHeart />
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		);
@@ -53,18 +72,30 @@ export const Card = props => {
 					<p className="card-text overflow-auto">
 						Terrain: {properties === undefined ? "Loading..." : properties.result.properties.terrain}
 					</p>
-					<Link
-						to={
-							properties === undefined
-								? "/"
-								: {
-										pathname: "/planet/" + properties.result.uid,
-										state: properties
-								  }
-						}
-						className="btn btn-outline-primary">
-						Learn More!
-					</Link>
+					<div className="row">
+						<div className="col-6">
+							<Link
+								to={
+									properties === undefined
+										? "/"
+										: {
+												pathname: "/planet/" + properties.result.uid,
+												state: properties
+										  }
+								}
+								className="btn btn-outline-primary">
+								Learn More!
+							</Link>
+						</div>
+						<div className="col-6">
+							<button
+								type="button"
+								className="btn btn-outline-warning"
+								onClick={() => favoriteHandler(props.name)}>
+								<FaRegHeart />
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		);

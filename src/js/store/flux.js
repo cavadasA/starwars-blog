@@ -2,7 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			characters: [],
-			planets: []
+			planets: [],
+			favorites: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -41,6 +42,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setPlanets: array => {
 				setStore({ planets: array });
+			},
+			getFavorites: () => {
+				const store = getStore();
+				return store.favorites;
+			},
+			setFavorites: name => {
+				const store = getStore();
+				let newFavorites = store.favorites;
+				newFavorites.push(name);
+				setStore({ favorites: newFavorites });
+			},
+			deleteFavorites: name => {
+				const store = getStore();
+				let newFavorites = store.favorites;
+				let test = newFavorites.filter(favorite => favorite !== name);
+				setStore({ favorites: test });
 			}
 		}
 	};
